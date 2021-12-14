@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: arraw function
+# key: arf
+# --
+const ${1:name} = (${2:param}) => ({
+      $0
+});

@@ -1,0 +1,11 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: useEffect
+# key: uef
+# uuid: useEffect
+# --
+useEffect(() => {
+ ${1:effect}
+ return () => {
+  ${3:cleanup}
+ }`(js-react-redux-yasnippets-semicolon)`
+}, [${2:input}])`(js-react-redux-yasnippets-semicolon)`

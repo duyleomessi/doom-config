@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: contracts_build_directory
+# key: ctb-dir
+# --
+contracts_build_directory: "${1:./public/contracts}",

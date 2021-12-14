@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: console.log(`...`)
+# key: con6
+# --
+console.log(${1:`${2:Name}}`})
