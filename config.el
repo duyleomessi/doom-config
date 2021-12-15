@@ -1076,21 +1076,30 @@ Finally save buffer.
         engine/browser-function 'browse-url-default-macosx-browser
         ;; browse-url-generic-program "google-chrome"
         )
-  (defengine duckduckgo
-    "https://duckduckgo.com/?q=%s"
-    :keybinding "d")
+
+  ;; Code Overflow
   (defengine github
     "https://github.com/search?ref=simplesearch&q=%s"
     :keybinding "h")
   (defengine stack-overflow
     "https://stackoverflow.com/search?q=%s"
     :keybinding "s")
+
+  ;; Node Package Manager
   (defengine npm
     "https://www.npmjs.com/search?q=%s"
     :keybinding "n")
+
+  ;; Rust Package Management
   (defengine crates
     "https://crates.io/search?q=%s"
-    :keybinding "c")
+    :docstring "Crates Package Management for Rust"
+    :keybinding "cc")
+  (defengine rust-std
+    "https://doc.rust-lang.org/std/?search=%s"
+    :keybinding "cs")
+
+  ;; Languages
   (defengine translate
     "https://translate.google.com/?sl=en&tl=vi&text=%s&op=translate"
     :keybinding "t")
@@ -1099,13 +1108,18 @@ Finally save buffer.
     :keybinding "e")
 
 
+  ;; Social
   (defengine youtube
     "http://www.youtube.com/results?aq=f&oq=&search_query=%s"
     :keybinding "y")
 
+  ;; Search
   (defengine google
     "http://www.google.com/search?ie=utf-8&oe=utf-8&q=%s"
     :keybinding "g")
+  (defengine duckduckgo
+    "https://duckduckgo.com/?q=%s"
+    :keybinding "d")
 
   (engine-mode 1))
 
@@ -1415,12 +1429,6 @@ Otherwise act as `self-insert-command'."
   '("go" "python" "ipython" "bash" "sh" "js" "typescript" "css"))
 (dolist (lang org-babel-lang-list)
   (eval `(lsp-org-babel-enable ,lang)))
-
-;; (use-package! grip-mode
-;;   :hook ((markdown-mode org-mode) . grip-mode)
-;;   :config
-;;   (setq grip-github-user "gcclll"
-;;         grip-github-password "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"))
 
 (use-package! pandoc-mode
   :after (markdown-mode org-mode)
