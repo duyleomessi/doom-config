@@ -287,8 +287,8 @@ Finally save buffer.
   ;; Global settings (defaults)
   (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
         doom-themes-enable-italic t) ; if nil, italics is universally disabled
-  ;; (load-theme 'doom-solarized-dark-high-contrast t)
-  (load-theme 'doom-dracula t)
+  (load-theme 'doom-solarized-dark-high-contrast t)
+  ;; (load-theme 'doom-dracula t)
 
   ;; Enable flashing mode-line on errors
   (doom-themes-visual-bell-config)
@@ -464,6 +464,8 @@ Finally save buffer.
  "s-j"          #'move-text-down
  ;; "s-'"          #'cycle-quotes
  "s-i"          #'dqv/string-inflection-cycle-auto
+ "s->"          #'mc/mark-next-lines
+ "s-<"          #'mc/mark-previous-lines
  ;; projector --- ---
  ;; "s-p b"      #'projector-switch-to-shell-buffer
  ;; "s-p B"      #'projector-run-shell-command-current-directory-background
@@ -552,20 +554,24 @@ Finally save buffer.
  :n     "dd"            #'deft
  :n     "j"             #'switch-to-buffer
 
- ;; t -> Treemacs
- :n     "zt"            #'treemacs
- :n     "zdf"           #'treemacs-delete-file
- :n     "zdp"           #'treemacs-remove-project-from-workspace
- :n     "zcd"           #'treemacs-create-dir
- :n     "zcf"           #'treemacs-create-file
- :n     "za"           #'treemacs-add-project-to-workspace
- :n     "zwc"           #'treemacs-create-workspace
- :n     "zws"           #'treemacs-switch-workspace
- :n     "zwd"           #'treemacs-remove-workspace
- :n     "zwf"           #'treemacs-rename-workspace
+ ;; m -> Treemacs
+ :n     "mt"            #'treemacs
+ :n     "mdf"           #'treemacs-delete-file
+ :n     "mdp"           #'treemacs-remove-project-from-workspace
+ :n     "mcd"           #'treemacs-create-dir
+ :n     "mcf"           #'treemacs-create-file
+ :n     "ma"           #'treemacs-add-project-to-workspace
+ :n     "mwc"           #'treemacs-create-workspace
+ :n     "mws"           #'treemacs-switch-workspace
+ :n     "mwd"           #'treemacs-remove-workspace
+ :n     "mwf"           #'treemacs-rename-workspace
 
  ;; d -> edit
  :n     "es"            #'sudo-edit
+
+ ;; w -> window
+ :n     "wo"            #'delete-other-windows
+
 
  ;; i -> Insert, Imenu
  :n     "ia"            #'+org/attach-file-and-insert-link
@@ -1427,22 +1433,22 @@ Otherwise act as `self-insert-command'."
   :bind
   (:map markdown-mode-map ("C-x p" . vmd-mode)))
 
- (use-package! maple-iedit
-    :commands (maple-iedit-match-all maple-iedit-match-next maple-iedit-match-previous)
-    :config
-    (delete-selection-mode t)
-    (setq maple-iedit-ignore-case t)
-    (defhydra maple/iedit ()
-      ("n" maple-iedit-match-next "next")
-      ("t" maple-iedit-skip-and-match-next "skip and next")
-      ("T" maple-iedit-skip-and-match-previous "skip and previous")
-      ("p" maple-iedit-match-previous "prev"))
-    :bind (:map evil-visual-state-map
-           ("n" . maple/iedit/body)
-           ("C-n" . maple-iedit-match-next)
-           ("C-p" . maple-iedit-match-previous)
-           ("C-t" . map-iedit-skip-and-match-next)
-           ("C-T" . map-iedit-skip-and-match-previous)))
+(use-package! maple-iedit
+   :commands (maple-iedit-match-all maple-iedit-match-next maple-iedit-match-previous)
+   :config
+   (delete-selection-mode t)
+   (setq maple-iedit-ignore-case t)
+   (defhydra maple/iedit ()
+     ("n" maple-iedit-match-next "next")
+     ("t" maple-iedit-skip-and-match-next "skip and next")
+     ("T" maple-iedit-skip-and-match-previous "skip and previous")
+     ("p" maple-iedit-match-previous "prev"))
+   :bind (:map evil-visual-state-map
+          ("n" . maple/iedit/body)
+          ("C-n" . maple-iedit-match-next)
+          ("C-p" . maple-iedit-match-previous)
+          ("C-t" . map-iedit-skip-and-match-next)
+          ("C-T" . map-iedit-skip-and-match-previous)))
 
 (use-package! net-utils
   :bind

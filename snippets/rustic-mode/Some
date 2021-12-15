@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Some
+# key: S
+# --
+Some($9)
